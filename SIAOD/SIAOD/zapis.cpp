@@ -1,0 +1,93 @@
+
+#include <stdio.h>
+#include <iostream>
+#include <string>
+#include <conio.h>
+
+const double ural_koeff = 0.15;
+const double constndfl = 0.13;
+const int MAX = 20;
+
+using namespace std;
+
+struct zap			//объявление записи
+{
+	char fio[40];
+	char status[40];
+	double oklad;
+	double koef;
+	double shtraf;
+	double premia;
+	double nalog_base;
+	double ndfl;
+	double itog;
+};
+
+zap vedomost[MAX];		//объявление массива записей
+	
+int main()
+{
+	setlocale(LC_ALL,"Russian");
+	int i = 0, t;
+	char k;
+	FILE *out;
+
+	do
+	{
+		printf("Создать\t\t- 1\nСохранить\t- 2\nВыход\t\t- 0\n");
+		cin >> k;
+		switch(k)
+		{
+		case '1':
+			{
+				printf("Введите количество сотрудников\n");
+				scanf("%d", &t);
+				for (i = 0; i < t; i++)
+				{
+					cin.ignore();
+					printf("\nФИО : "); 
+					cin.getline(vedomost[i].fio, 40);
+					printf("\nДолжность : ");
+					cin.getline(vedomost[i].status, 40);
+					printf("\nОклад = ");
+					cin >> vedomost[i].oklad;
+					vedomost[i].koef = vedomost[i].oklad * ural_koeff;
+					printf("\nШтраф = ");
+					cin >> vedomost[i].shtraf;
+					vedomost[i].shtraf *= vedomost[i].oklad;
+					printf("\nПремия = ");
+					cin >> vedomost[i].premia;
+					printf("\n");
+					vedomost[i].premia *= vedomost[i].oklad;
+					vedomost[i].nalog_base = vedomost[i].oklad + vedomost[i].premia + vedomost[i].koef - vedomost[i].shtraf;
+					vedomost[i].ndfl = constndfl * vedomost[i].nalog_base;
+					vedomost[i].itog = vedomost[i].nalog_base - vedomost[i].ndfl;
+				}
+			break;
+			}
+		case '2':
+			{
+				out = fopen("output.txt", "wt"); // файл будет сохранен в папку с проектом
+				fprintf(out, "ФИО\t\t| Должность\t| Оклад\t\t| Урал. коэф.\t| Штраф\t| Премия\t| Налог. база\t| НДФЛ\t\t| Итог\n");
+				for (i = 0; i < 150; i++)
+					fprintf(out, "-");
+				for (i = 0; i < t; i++)
+				{
+					fprintf(out, "\n%s\t| %s\t| %.2f\t| %.2f\t| %.2f\t| %.2f\t\t| %.2f\t| %.2f\t| %.2f\n", 
+						vedomost[i].fio, vedomost[i].status, vedomost[i].oklad, vedomost[i].koef,
+						vedomost[i].shtraf, vedomost[i].premia, vedomost[i].nalog_base, 
+						vedomost[i].ndfl, vedomost[i].itog);
+					for (int i2 = 0; i2 < 150; i2++)
+					fprintf(out, "-");
+				}
+				printf("Ваш файл успешно сохранен");
+				fclose(out);
+				k = '0';
+			}
+		}
+	}
+	while(k != '0');
+	getch();
+
+	return 0;
+}

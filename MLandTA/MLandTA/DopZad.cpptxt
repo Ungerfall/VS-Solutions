@@ -1,0 +1,44 @@
+/*#include <stdio.h>
+#include <conio.h>
+#include <stdlib.h>
+#include <math.h>
+
+const int MAX = 4; 
+const int MIN = 2;
+const int MAXLENGTH = 16;
+
+void prnt(int arr[MAXLENGTH], int x)
+{
+
+
+}
+
+int main()
+{
+	int N, i;
+	int a[MAXLENGTH], b[MAXLENGTH], c[MAXLENGTH], d[MAXLENGTH];
+	int otv[MAXLENGTH], otv2[MAXLENGTH];
+	do
+	{
+	printf("Vvedite kol-vo peremennih ( %d <= N <= %d )\nN = ", MIN, MAX);
+	scanf("%d", &N);
+	}
+	while ((N > MAX) || (N < MIN));
+	switch(N)
+	{
+	case 2:
+		{
+			for (i = 1; i <= pow(2, (double)N); i++)
+			{
+				if (i <= pow(2, (double)N) / 2)
+					a[i] = 0;
+				else
+					a[i] = 1;
+			}
+		}
+
+
+	getch();
+	return 0;
+}
+*/

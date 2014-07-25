@@ -1,0 +1,14 @@
+Shubin I. V.
+student
+1000.00
+0.03
+0.01
+Rakickii A. A.
+student
+10000.00
+0.01
+0.1
+Yandex G. A.
+1234.00
+0.03
+0.05

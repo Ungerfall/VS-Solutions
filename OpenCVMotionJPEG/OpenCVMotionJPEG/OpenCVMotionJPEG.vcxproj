@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{87F69D24-A523-40B2-9291-DA9E36948ABA}</ProjectGuid>
+    <RootNamespace>OpenCVMotionJPEG</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LibraryPath>D:\Program Files\poco-1.4.6p2\lib;D:\Study\C, C++, C#\MEGALIB;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSDK_LibraryPath_x86)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LibraryPath>D:\Program Files\poco-1.4.6p2\lib;D:\Study\C, C++, C#\MEGALIB;$(VCInstallDir)lib;$(VCInstallDir)atlmfc\lib;$(WindowsSDK_LibraryPath_x86)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\Program Files\poco-1.4.6p2\XML\include;D:\Program Files\poco-1.4.6p2\Foundation\include;D:\Program Files\poco-1.4.6p2\CppUnit\include;D:\Program Files\poco-1.4.6p2\Net\include;D:\Program Files\poco-1.4.6p2\Util\include;D:\Program Files\OpenCV\opencv\build\include\;D:\Program Files\OpenCV\opencv\build\include\opencv;D:\Study\C, C++, C#\MEGALIB;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>D:\Program Files\poco-1.4.6p2\bin;D:\Program Files\FastCGI-2.4.0\libfcgi\Debug;D:\Program Files\OpenCV\opencv\build\x86\vc11\bin\;D:\Program Files\OpenCV\opencv\build\x86\vc11\lib;D:\Study\C, C++, C#\MEGALIB;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opencv_imgproc246d.lib;megalib1.lib;opencv_core246d.lib;opencv_highgui246d.lib;libfcgi.lib;PocoNetd.lib;PocoUtild.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\Program Files\poco-1.4.6p2\XML\include;D:\Program Files\poco-1.4.6p2\Foundation\include;D:\Program Files\poco-1.4.6p2\CppUnit\include;D:\Program Files\poco-1.4.6p2\Net\include;D:\Program Files\poco-1.4.6p2\Util\include;D:\Program Files\OpenCV\opencv\build\include\;D:\Program Files\OpenCV\opencv\build\include\opencv;D:\Study\C, C++, C#\MEGALIB;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>D:\Program Files\poco-1.4.6p2\bin;D:\Program Files\FastCGI-2.4.0\libfcgi\Debug;D:\Program Files\OpenCV\opencv\build\x86\vc11\bin\;D:\Program Files\OpenCV\opencv\build\x86\vc11\lib;D:\Study\C, C++, C#\MEGALIB;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opencv_imgproc246.lib;megalib1.lib;opencv_core246.lib;opencv_highgui246.lib;PocoNet.lib;PocoUtil.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="FrameRequestHandler.cpp" />
+    <ClCompile Include="FrameRequestHandlerFactory.cpp" />
+    <ClCompile Include="FrameRunnable.cpp" />
+    <ClCompile Include="FrameServer.cpp" />
+    <ClCompile Include="OpenCVmjpeg.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FrameRequestHandler.h" />
+    <ClInclude Include="FrameRequestHandlerFactory.h" />
+    <ClInclude Include="FrameRunnable.h" />
+    <ClInclude Include="FrameServer.h" />
+    <ClInclude Include="OpenCVmjpeg.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

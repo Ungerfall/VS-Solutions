@@ -1,0 +1,18 @@
+Version 300
+Charset "WindowsCyrillic"
+Delimiter ","
+CoordSys NonEarth Units "mm" Bounds (1.16723775864e-014, 0) (195.83, 130.83)
+Columns 1
+  streets Char(10)
+Data
+
+Region  1
+  5
+0 65.21555228
+0 71.47995225
+195.83 16.24544369
+195.83 8.97461982
+0 65.21555228
+    Pen (1,2,0) 
+    Brush (2,8421504,16777215)
+    Center 97.915 40.22728603

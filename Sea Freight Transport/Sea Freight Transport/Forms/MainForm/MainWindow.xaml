@@ -1,0 +1,165 @@
+﻿<Window x:Class="SFT.Forms.MainForm.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:qe="clr-namespace:SFT.Forms.MainForm"
+        Title="Грузовые Авиаперевозки" MinHeight="400" MaxHeight="400" MinWidth="625" MaxWidth="625" Background="#000"> 
+    <!--
+    <Window.Resources>
+        <Style x:Key="Epson1">
+            <Setter Property="TextElement.FontFamily" Value="Resources/#Epson1"></Setter>
+        </Style>
+    </Window.Resources>
+    -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="72*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" Background="LightGray">
+            <MenuItem Header="SFT">
+                <MenuItem Header="Выход" Name="Exit" Click="Exit_click"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Настройки">
+                <MenuItem Header="Редактор городов" Click="TownsEditor_Click"></MenuItem>
+                <MenuItem Header="Редактор маршрутов" Click="PathsEditor_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Справка">
+                <MenuItem Header="О программе"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Border Grid.Row="1">
+            <WrapPanel Margin="25,10" Orientation="Horizontal" >
+                <Image Height="45" Width="45">
+                    <Image.Source>
+                        <DrawingImage>
+                            <DrawingImage.Drawing>
+                                <DrawingGroup>
+                                    <DrawingGroup.Children>
+                                        <GeometryDrawing 
+                                            Geometry="M -1,0 A 1,1 0 1 1 1,0 M -1,0 A 1,1 0 1 0 1,0 M 0 0 L 0 -0.8 M 0 0 L 0.5 -0.5">
+                                            <GeometryDrawing.Pen>
+                                                <Pen Thickness="0.08" Brush="Red"/>
+                                            </GeometryDrawing.Pen>
+                                        </GeometryDrawing>
+                                    </DrawingGroup.Children>
+                                </DrawingGroup>
+                            </DrawingImage.Drawing>
+                        </DrawingImage>
+                    </Image.Source>
+                </Image>
+                <TextBlock
+                        Margin="30,10,0,0"
+                        VerticalAlignment="Center" 
+                        FontFamily="Epson1" FontSize="36" 
+                        Name="ClockBlock" FontWeight="Bold" 
+                        Foreground="Red"></TextBlock>
+                <StackPanel VerticalAlignment="Center" Margin="120,0,0,0" >
+                    <TextBlock 
+                            Name="DateBlock" FontFamily="Epson1" 
+                            FontSize="24" HorizontalAlignment="Center"
+                            Foreground="Red"></TextBlock>
+                    <TextBlock
+                            HorizontalAlignment="Center" 
+                            Name="Date" FontFamily="Epson1" 
+                            FontSize="24" 
+                            Foreground="Red"></TextBlock>
+                </StackPanel>
+            </WrapPanel>
+        </Border>
+        <StackPanel Margin="10" Grid.Row="2">
+            <TextBlock Text="Близжайшие рейсы" FontFamily="Epson1" Foreground="Red" FontSize="18" Margin="10,0,0,0"></TextBlock>
+            <ItemsControl Name="ItCntrl_1" ItemsSource="{Binding RouteList}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type qe:CBoardFields}">
+                        <Grid Margin="10,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock ToolTip="Номер самолета" 
+                                       Text="{Binding AirplaneNumber, Mode=TwoWay}"
+                                       Grid.Column="0" 
+                                       VerticalAlignment="Center" 
+                                       FontFamily="Epson1" 
+                                       Foreground="Red" 
+                                       FontSize="18" 
+                                       Margin="0,0,5,0"></TextBlock>
+                            <TextBlock ToolTip="Маршрут"
+                                       Text="{Binding Path_, Mode=TwoWay}"
+                                       Grid.Column="1" 
+                                       VerticalAlignment="Center" 
+                                       FontFamily="Epson1" 
+                                       Foreground="Red" 
+                                       FontSize="18"
+                                       Margin="10,0"></TextBlock>
+                            <TextBlock ToolTip="Терминал"
+                                       Text="{Binding Terminal, Mode=TwoWay}"
+                                       Grid.Column="2" 
+                                       VerticalAlignment="Center" 
+                                       FontFamily="Epson1" 
+                                       Foreground="Red" 
+                                       FontSize="18"
+                                       Margin="0,0,50,0"></TextBlock>
+                            <TextBlock ToolTip="Время"
+                                       Text="{Binding DepartureTime, Mode=TwoWay}"
+                                       Grid.Column="3" 
+                                       VerticalAlignment="Center" 
+                                       FontFamily="Epson1" 
+                                       Foreground="Red" 
+                                       FontSize="18">                                
+                            </TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+        <Expander Grid.Row="3" 
+                  Header="Найти маршрут" 
+                  HorizontalAlignment="Center" 
+                  FontFamily="Epson1" 
+                  Foreground="Red" 
+                  FontSize="16" 
+                  Margin="0,20,0,0">
+            <StackPanel>
+                <TextBlock Text="Откуда"></TextBlock>
+                <ComboBox Text="Town_In" Foreground="Red" >
+                    <ComboBoxItem Name="town1">Берлин</ComboBoxItem>
+                    <ComboBoxItem Name="town2">Ижевск</ComboBoxItem>
+                    <ComboBoxItem Name="town3">Лондон</ComboBoxItem>
+                    <ComboBoxItem Name="town4">Москва</ComboBoxItem>
+                    <ComboBoxItem Name="town5">Нью-Йорк</ComboBoxItem>
+                </ComboBox>
+                <TextBlock Text="Куда"></TextBlock>
+                <ComboBox Text="Town_To" Foreground="Red">
+                    <ComboBoxItem Name="to_town1">Берлин</ComboBoxItem>
+                    <ComboBoxItem Name="to_town2">Ижевск</ComboBoxItem>
+                    <ComboBoxItem Name="to_town3">Лондон</ComboBoxItem>
+                    <ComboBoxItem Name="to_town4">Москва</ComboBoxItem>
+                    <ComboBoxItem Name="to_town5">Нью-Йорк</ComboBoxItem>
+                </ComboBox>
+                <Button Content="найти" Margin="30,5" Foreground="Red"></Button>
+            </StackPanel>
+            </Expander>
+        <Button Grid.Row="4" 
+                Margin="10,0,0,0" 
+                HorizontalAlignment="Left" 
+                Content="Расписание" 
+                FontFamily="Epson1" 
+                FontSize="16" 
+                Foreground="Red" 
+                Height="25" 
+                Width="110"
+                Click="TimeTable_Click"></Button>
+        <StackPanel Grid.Row="4" Margin="555,0,0,2">
+            <TextBlock Text="EXIT" HorizontalAlignment="Center" Foreground="Red"></TextBlock>
+            <Button MaxWidth="42" Click="Exit_click" >
+                <Path Stroke="Red" Data="M 2 3 L 2 0 L 10 0 L 10 12 L 2 12 L 2 9 M 4 6 L 0 6 L 1 4 L -4 6 L 1 8 L 0 6"></Path>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>
