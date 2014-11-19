@@ -14,12 +14,13 @@ namespace KonturKampus2014
                 X = x;
                 Y = y;
             }
-            public int X, Y;
+            public readonly int X;
+            public readonly int Y;
         }
 
-        public class Classroom
+        public abstract class Classroom
         {
-            public List<string> Students = new List<string>();
+            public readonly List<string> Students = new List<string>();
         }
 
         public static int[] ParseNumbers(IEnumerable<string> lines)
@@ -30,7 +31,7 @@ namespace KonturKampus2014
                 .ToArray();
         }
 
-        public static string[] GetAllStudents(Classroom[] classes)
+        public static string[] GetAllStudents(IEnumerable<Classroom> classes)
         {
             return classes
                 .SelectMany(s => s.Students)
@@ -48,7 +49,7 @@ namespace KonturKampus2014
                 .ToList();
         }
 
-        public static string[] GetSortedWords(params string[] textLines)
+        private static IEnumerable<string> GetSortedWords(params string[] textLines)
         {
             return textLines
                 .Select(s => Regex.Split(s, @"\W+"))
@@ -57,6 +58,14 @@ namespace KonturKampus2014
                 .OrderBy(ob => ob)
                 .Distinct()
                 .ToArray();
+        }
+
+        private static IEnumerable<Point> GetNeighbours(Point p)
+        {
+	        int[] d = {-1, 0, 1};
+            return d
+                .SelectMany(sm => d.Select((x, y) => new Point(p.X + x, p.Y + y)))
+                .Where(w => !(w.X == p.X && w.Y == p.Y));
         }
 
         static void Main()
@@ -71,8 +80,8 @@ namespace KonturKampus2014
                 "A mulatto, an albino, a mosquito, my libido...",
                 "Yeah, hey"
             );
-            foreach (var word in vocabulary)
-                Console.WriteLine(word);
+            foreach (var item in GetNeighbours(new Point(5, 6)))
+                Console.WriteLine("{0} - {1}", item.X, item.Y);
         }
     }
 }
